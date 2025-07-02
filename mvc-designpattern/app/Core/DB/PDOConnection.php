@@ -61,6 +61,16 @@ class PDOConnection{
         return $stmt->fetch();
     }
 
+     // ✅ Read (by columnn  )
+    public function selectBycolumn($table, $id ,$column)
+    {
+        $sql = "SELECT * FROM $table WHERE $column = :id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute(['id' => $id ]);
+        return $stmt->fetch();
+    }
+    
+
     // ✅ Update
     public function update($table, $id, $data)
     {
